@@ -15,7 +15,7 @@ public class QuestionController {
 
     @ResponseBody
     @RequestMapping(path = "/question/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<Question> getQuestion(@RequestParam("id") String id) throws NoMatchingDataFoundException {
+    public ResponseEntity<Question> getQuestion(@PathVariable("id") String id) throws NoMatchingDataFoundException {
         Question question = questionService.getQuestion(id);
         return new ResponseEntity<>(question, HttpStatus.OK);
     }

@@ -22,19 +22,19 @@ public class AttemptController {
 
     @ResponseBody
     @RequestMapping(path = "/assessment/{id}/action/attempt", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<AssessmentAttempt> prepareAssessmentForAttempt(@RequestParam("id") String assessmentId) throws NoMatchingDataFoundException {
+    public ResponseEntity<AssessmentAttempt> prepareAssessmentForAttempt(@PathVariable("id") String assessmentId) throws NoMatchingDataFoundException {
         return new ResponseEntity<>(attemptService.prepareAssessment(assessmentId), HttpStatus.OK);
     }
 
     @ResponseBody
     @RequestMapping(path = "/assessment/attempt/{id}/action/start", method = RequestMethod.PUT, produces = "application/json")
-    public ResponseEntity<AssessmentAttempt> startAssessment(@RequestParam("id") String attemptId) throws NoMatchingDataFoundException {
+    public ResponseEntity<AssessmentAttempt> startAssessment(@PathVariable("id") String attemptId) throws NoMatchingDataFoundException {
         return new ResponseEntity<>(attemptService.startAssessment(attemptId), HttpStatus.OK);
     }
 
     @ResponseBody
     @RequestMapping(path = "/assessment/attempt/{id}/action/submit", method = RequestMethod.PUT, produces = "application/json")
-    public ResponseEntity<AssessmentAttempt> submitEntireAssessment(@RequestParam("id") String attemptId) throws NoMatchingDataFoundException {
+    public ResponseEntity<AssessmentAttempt> submitEntireAssessment(@PathVariable("id") String attemptId) throws NoMatchingDataFoundException {
         return new ResponseEntity<>(attemptService.submitAssessment(attemptId), HttpStatus.OK);
     }
 }

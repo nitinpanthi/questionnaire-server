@@ -19,6 +19,17 @@ public class Assessment {
     @OneToMany(mappedBy = "assessment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AssessmentQuestionRelation> questionRelations;
 
+    public Assessment() {
+
+    }
+
+    public Assessment(String id, String title, String description, String numberOfQuestions) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.numberOfQuestions = numberOfQuestions;
+    }
+
     public String getId() {
         return id;
     }

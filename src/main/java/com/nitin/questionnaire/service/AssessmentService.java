@@ -6,6 +6,7 @@ import com.nitin.questionnaire.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,5 +40,9 @@ public class AssessmentService {
             return assessment.get();
         }
         throw new NoMatchingDataFoundException();
+    }
+
+    public List<Assessment> getAllAssessments() {
+        return (List<Assessment>) assessmentRepository.findAll();
     }
 }
