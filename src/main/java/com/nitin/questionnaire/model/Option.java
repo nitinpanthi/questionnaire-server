@@ -6,6 +6,14 @@ import java.util.UUID;
 @Entity
 @Table(name = "question_option")
 public class Option {
+    public Option(String description, Question question){
+        this.description = description;
+        this.question = question;
+    }
+
+    public Option() {
+    }
+
     @Id
     private String id=UUID.randomUUID().toString();
     @ManyToOne

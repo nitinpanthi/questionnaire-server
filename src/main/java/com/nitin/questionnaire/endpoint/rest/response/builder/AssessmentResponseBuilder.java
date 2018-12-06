@@ -21,7 +21,7 @@ public class AssessmentResponseBuilder {
         response.setId(assessment.getId());
         response.setTitle(assessment.getTitle());
         response.setDescription(assessment.getDescription());
-        response.setNumberOfquestions(assessment.getNumberOfQuestions());
+        response.setNumberOfquestions(assessment.getQuestionRelations().size());
         response.setQuestions(questionResponseBuilder.buildQuestionResponse(assessment.getQuestionRelations()));
 
         return response;
@@ -32,7 +32,7 @@ public class AssessmentResponseBuilder {
         response.setId(assessment.getId());
         response.setTitle(assessment.getTitle());
         response.setDescription(assessment.getDescription());
-        response.setNumberOfQuestions(Integer.parseInt(assessment.getNumberOfQuestions()));
+        response.setNumberOfQuestions(assessment.getQuestionRelations().size());
 
         return response;
     }
@@ -42,7 +42,7 @@ public class AssessmentResponseBuilder {
         response.setId(assessment.getId());
         response.setTitle(assessment.getTitle());
         response.setDescription(assessment.getDescription());
-        response.setNumberOfquestions(assessment.getNumberOfQuestions());
+        response.setNumberOfquestions(assessment.getQuestionRelations().size());
         response.setQuestions(questionResponseBuilder.buildQuestionSummaryResponse(assessment.getQuestionRelations()));
 
         return response;

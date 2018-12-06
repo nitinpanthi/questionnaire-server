@@ -6,7 +6,7 @@ public class AssessmentWithQuestionSummaryResponse {
     private String id;
     private String title;
     private String description;
-    private String numberOfquestions;
+    private Integer numberOfquestions;
     private List<QuestionSummaryResponse> questions;
 
     public String getId() {
@@ -33,11 +33,11 @@ public class AssessmentWithQuestionSummaryResponse {
         this.description = description;
     }
 
-    public String getNumberOfquestions() {
+    public Integer getNumberOfquestions() {
         return numberOfquestions;
     }
 
-    public void setNumberOfquestions(String numberOfquestions) {
+    public void setNumberOfquestions(Integer numberOfquestions) {
         this.numberOfquestions = numberOfquestions;
     }
 

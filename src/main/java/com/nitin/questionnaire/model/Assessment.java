@@ -1,7 +1,9 @@
 package com.nitin.questionnaire.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 @Entity
@@ -15,7 +17,19 @@ public class Assessment {
     @Column
     private String description;
     @Column
-    private String numberOfQuestions;
+    private LocalDate createdOn;
+    @Column
+    private LocalDate lastUpdatedOn;
+    @Column
+    private String createdBy;
+    @Column
+    private Locale locale;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private DifficultyLevel difficultyLevel;
+    @ManyToMany
+    private List<Classification> classifications;
+
     @OneToMany(mappedBy = "assessment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AssessmentQuestionRelation> questionRelations;
 
@@ -23,11 +37,52 @@ public class Assessment {
 
     }
 
-    public Assessment(String id, String title, String description, String numberOfQuestions) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.numberOfQuestions = numberOfQuestions;
+    public List<Classification> getClassifications() {
+        return classifications;
+    }
+
+    public void setClassifications(List<Classification> classifications) {
+        this.classifications = classifications;
+    }
+
+    public LocalDate getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDate createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDate getLastUpdatedOn() {
+        return lastUpdatedOn;
+    }
+
+    public void setLastUpdatedOn(LocalDate lastUpdatedOn) {
+        this.lastUpdatedOn = lastUpdatedOn;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    public DifficultyLevel getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
+    public void setDifficultyLevel(DifficultyLevel difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
     }
 
     public String getId() {
@@ -52,14 +107,6 @@ public class Assessment {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getNumberOfQuestions() {
-        return numberOfQuestions;
-    }
-
-    public void setNumberOfQuestions(String numberOfQuestions) {
-        this.numberOfQuestions = numberOfQuestions;
     }
 
     public List<AssessmentQuestionRelation> getQuestionRelations() {

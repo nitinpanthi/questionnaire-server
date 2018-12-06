@@ -2,15 +2,18 @@ package com.nitin.questionnaire.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
 @Table(name = "assessment_question_relation")
 public class AssessmentQuestionRelation implements Serializable {
     @Id
+    private String id = UUID.randomUUID().toString();
+
     @ManyToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name = "assessment_id", referencedColumnName = "id")
     private Assessment assessment;
-    @Id
+
     @ManyToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name = "question_id", referencedColumnName = "id")
     private Question question;
@@ -39,5 +42,13 @@ public class AssessmentQuestionRelation implements Serializable {
 
     public void setQuestionIndex(int questionIndex) {
         this.questionIndex = questionIndex;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

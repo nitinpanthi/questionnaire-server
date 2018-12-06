@@ -9,7 +9,7 @@ public class AssessmentResponse {
     private String id;
     private String title;
     private String description;
-    private String numberOfquestions;
+    private Integer numberOfquestions;
     private List<QuestionResponse> questions;
 
     public String getId() {
@@ -36,11 +36,11 @@ public class AssessmentResponse {
         this.description = description;
     }
 
-    public String getNumberOfquestions() {
+    public Integer getNumberOfquestions() {
         return numberOfquestions;
     }
 
-    public void setNumberOfquestions(String numberOfquestions) {
+    public void setNumberOfquestions(Integer numberOfquestions) {
         this.numberOfquestions = numberOfquestions;
     }
 
