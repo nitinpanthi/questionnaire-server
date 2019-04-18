@@ -1,5 +1,6 @@
 package com.nitin.questionnaire.endpoint.rest;
 
+import com.nitin.questionnaire.endpoint.rest.request.CreateClassificationRequest;
 import com.nitin.questionnaire.model.Classification;
 import com.nitin.questionnaire.service.ClassificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +17,18 @@ public class ClassificationController {
     private ClassificationService classificationService;
 
     @ResponseBody
-    @RequestMapping(value = "/api/classification/{name}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<Classification> createClassification(@PathVariable("name") String classificationName) {
+    @RequestMapping(value = "/secured/api/classification", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Classification> createClassification(@RequestBody CreateClassificationRequest request) {
         Classification classification = new Classification();
-        classification.setName(classificationName);
+        classification.setName(request.getName());
+        classification.setDescription(request.getDescription());
         return new ResponseEntity<>(classificationService.create(classification), HttpStatus.OK);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/api/classification/{id}", method = RequestMethod.DELETE, produces = "application/json")
-    public ResponseEntity<Boolean> removeClassification(@PathVariable("id") String classificationId) {
-        Classification classification = new Classification();
-        classification.setId(classificationId);
-        return new ResponseEntity<>(classificationService.remove(classification), HttpStatus.OK);
+    @RequestMapping(value = "/secured/api/classification/{name}", method = RequestMethod.DELETE, produces = "application/json")
+    public ResponseEntity<Boolean> removeClassification(@PathVariable("name") String name) {
+        return new ResponseEntity<>(classificationService.remove(name), HttpStatus.OK);
     }
 
     @ResponseBody

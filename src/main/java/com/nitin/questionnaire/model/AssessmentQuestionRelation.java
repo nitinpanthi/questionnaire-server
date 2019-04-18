@@ -17,8 +17,20 @@ public class AssessmentQuestionRelation implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name = "question_id", referencedColumnName = "id")
     private Question question;
+
     @Column
     private int questionIndex;
+
+    @ManyToOne
+    private User createdBy;
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
 
     public Assessment getAssessment() {
         return assessment;

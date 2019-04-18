@@ -20,8 +20,8 @@ public class Assessment {
     private LocalDate createdOn;
     @Column
     private LocalDate lastUpdatedOn;
-    @Column
-    private String createdBy;
+    @ManyToOne
+    private User createdBy;
     @Column
     private Locale locale;
     @Column
@@ -61,11 +61,11 @@ public class Assessment {
         this.lastUpdatedOn = lastUpdatedOn;
     }
 
-    public String getCreatedBy() {
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 

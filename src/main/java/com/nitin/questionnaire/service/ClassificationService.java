@@ -14,13 +14,22 @@ public class ClassificationService {
     private ClassificationRepository classificationRepository;
 
     public Classification create(Classification classification) {
+        if(classification.getName() == null || classification.getName().equals("")) {
+            throw new IllegalArgumentException("Cannot create a classification without a name.");
+        }
+        Classification savedClassification = classificationRepository.findByName(classification.getName());
+        if(savedClassification != null) {
+            throw new IllegalArgumentException("A classification with the same name already exists.");
+        }
         return classificationRepository.save(classification);
     }
 
-    public boolean remove(Classification classification) {
+    public boolean  remove(String name) {
         try {
+            Classification classification = classificationRepository.findByName(name);
             classificationRepository.deleteById(classification.getId());
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         return true;

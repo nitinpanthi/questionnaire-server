@@ -13,6 +13,8 @@ public class Classification {
     private String id= UUID.randomUUID().toString();
     @Column
     private String name;
+    @Column
+    private String description;
 
     public String getId() {
         return id;
@@ -28,5 +30,13 @@ public class Classification {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

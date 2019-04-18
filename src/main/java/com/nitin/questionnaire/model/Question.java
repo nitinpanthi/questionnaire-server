@@ -30,8 +30,8 @@ public class Question {
     private DifficultyLevel difficultyLevel;
     @Column
     private Locale locale;
-    @Column
-    private String createdBy;
+    @ManyToOne
+    private User createdBy;
     @ManyToMany
     private List<Classification> classifications;
 
@@ -59,11 +59,11 @@ public class Question {
         this.locale = locale;
     }
 
-    public String getCreatedBy() {
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 

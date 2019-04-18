@@ -32,8 +32,8 @@ public class CustomAssessmentRepositoryImpl implements CustomAssessmentRepositor
         query.multiselect(
                 root.get(Assessment_.id),
                 root.get(Assessment_.title),
-                root.get(Assessment_.description),
-                root.get(Assessment_.numberOfQuestions));
+                root.get(Assessment_.description));
+//                root.get(Assessment_.numberOfQuestions));
 
         TypedQuery<Assessment> typedQuery = entityManager.createQuery(query);
         return Optional.of(typedQuery.getSingleResult());
@@ -50,8 +50,8 @@ public class CustomAssessmentRepositoryImpl implements CustomAssessmentRepositor
         query.multiselect(
                 root.get(Assessment_.id),
                 root.get(Assessment_.title),
-                root.get(Assessment_.description),
-                root.get(Assessment_.numberOfQuestions));
+                root.get(Assessment_.description));
+//                root.get(Assessment_.numberOfQuestions));
 
 
         TypedQuery<Assessment> typedQuery = entityManager.createQuery(query);

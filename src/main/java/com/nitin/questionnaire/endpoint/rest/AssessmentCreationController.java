@@ -6,6 +6,7 @@ import com.nitin.questionnaire.model.Assessment;
 import com.nitin.questionnaire.model.Question;
 import com.nitin.questionnaire.service.AssessmentService;
 import com.nitin.questionnaire.service.QuestionService;
+import com.nitin.questionnaire.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,9 @@ public class AssessmentCreationController {
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private UserService userService;
+
     @ResponseBody
     @RequestMapping(
             path = "/secured/api/assessment",
@@ -37,7 +41,7 @@ public class AssessmentCreationController {
         assessment.setDescription(request.getDescription());
         assessment.setCreatedOn(LocalDate.now());
         assessment.setLastUpdatedOn(request.getLastUpdateDate());
-        assessment.setCreatedBy(request.getCreatedBy());
+        assessment.setCreatedBy(userService.getUser(request.getCreatedBy()));
         assessment.setLocale(request.getLocale());
         assessment.setDifficultyLevel(request.getDifficultyLevel());
 
@@ -62,7 +66,7 @@ public class AssessmentCreationController {
     public ResponseEntity<String> createQuestion(@RequestBody QuestionCreationRequest request) {
         Question question = new Question();
 
-        question.setCreatedBy(request.getCreatedBy());
+        question.setCreatedBy(userService.getUser(request.getCreatedBy()));
         question.setCreatedOn(LocalDate.now());
         question.setLocale(request.getLocale());
         question.setDifficultyLevel(request.getDifficultyLevel());
